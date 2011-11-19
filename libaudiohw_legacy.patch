@@ -1,0 +1,36 @@
+diff --git a/audio/Android.mk b/audio/Android.mk
+index ef41374..1cdd3a9 100644
+--- a/audio/Android.mk
++++ b/audio/Android.mk
+@@ -77,17 +77,21 @@ include $(BUILD_SHARED_LIBRARY)
+ #ifeq ($(strip $(BOARD_USES_GENERIC_AUDIO)),true)
+ #  LOCAL_CFLAGS += -D GENERIC_AUDIO
+ #endif
++include $(CLEAR_VARS)
++ifeq ($(BOARD_HAVE_BLUETOOTH),true)
++  LOCAL_SRC_FILES += A2dpAudioInterface.cpp
++  LOCAL_SHARED_LIBRARIES += audio.a2dp.default
++  LOCAL_C_INCLUDES += $(call include-path-for, bluez)
++
++  LOCAL_CFLAGS += \
++      -DWITH_BLUETOOTH \
++      -DWITH_A2DP
++
++LOCAL_MODULE := A2dpAudioInterface
++LOCAL_MODULE_TAGS := optional
++include $(BUILD_STATIC_LIBRARY)
++endif
+ 
+-#ifeq ($(BOARD_HAVE_BLUETOOTH),true)
+-#  LOCAL_SRC_FILES += A2dpAudioInterface.cpp
+-#  LOCAL_SHARED_LIBRARIES += liba2dp
+-#  LOCAL_C_INCLUDES += $(call include-path-for, bluez)
+-#
+-#  LOCAL_CFLAGS += \
+-#      -DWITH_BLUETOOTH \
+-#      -DWITH_A2DP
+-#endif
+-#
+ #include $(BUILD_SHARED_LIBRARY)
+ 
+ #    AudioHardwareGeneric.cpp \
