@@ -19,3 +19,6 @@ libaudiohw_legacy.patch
 spl_inl.h
   Implements fixes to bypass gcc errors on compiling asm code for <armv7 
   processors. Copy this to external/webrtc/src/common_audio/signal_processing_library/main/interface/
+
+copybit.h
+  File missing from hardware/libhardware/include/hardware/
