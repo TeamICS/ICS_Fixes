@@ -8,3 +8,10 @@ patch-build_core_user_tags.mk
 patch-preprocessing_Android.mk
   Patch to rename frameworks/base/media/libeffects/preprocessing/Android.mk
   to avoid building libpreprocessing which depends on webrtc (ARMv5/6 issue)
+
+libaudio.patch
+  A patch set which rework the libauio files to support libhardware_legacy which
+  is where the heroc libs fall now
+
+libaudiohw_legacy.patch
+  Finishes implementing A2dpAudioInterface by adding it to the build.
