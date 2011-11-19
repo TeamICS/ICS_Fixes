@@ -15,3 +15,7 @@ libaudio.patch
 
 libaudiohw_legacy.patch
   Finishes implementing A2dpAudioInterface by adding it to the build.
+
+spl_inl.h
+  Implements fixes to bypass gcc errors on compiling asm code for <armv7 
+  processors. Copy this to external/webrtc/src/common_audio/signal_processing_library/main/interface/
