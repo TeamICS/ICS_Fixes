@@ -1,1 +1,10 @@
-This repository contains files and patches needed to build ICS for various devices.
+This repository contains files and patches needed to build ICS for 
+various devices.
+
+patch-build_core_user_tags.mk
+  Patch to "grandfather" components in build/core/user_tags.mk instead 
+  of having to change LOCAL_MODULE_TAGS in Android.mk
+
+patch-preprocessing_Android.mk
+  Patch to rename frameworks/base/media/libeffects/preprocessing/Android.mk
+  to avoid building libpreprocessing which depends on webrtc (ARMv5/6 issue)
