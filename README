@@ -22,3 +22,6 @@ spl_inl.h
 
 copybit.h
   File missing from hardware/libhardware/include/hardware/
+
+synaptics-rmi-touchscreen.idc
+  Copy synaptics-rmi-touchscreen.idc to /system/usr/idc to get touchscreen working.
