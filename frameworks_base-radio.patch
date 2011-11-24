@@ -1,0 +1,16 @@
+diff --git a/services/java/com/android/server/ConnectivityService.java b/services/java/com/android/server/ConnectivityService.java
+index 8c42f31..b833d25 100644
+--- a/services/java/com/android/server/ConnectivityService.java
++++ b/services/java/com/android/server/ConnectivityService.java
+@@ -716,8 +716,9 @@ public class ConnectivityService extends IConnectivityManager.Stub {
+ 
+     @Override
+     public boolean isNetworkSupported(int networkType) {
+-        enforceAccessPermission();
+-        return (isNetworkTypeValid(networkType) && (mNetTrackers[networkType] != null));
++	return true;
++//        enforceAccessPermission();
++//        return (isNetworkTypeValid(networkType) && (mNetTrackers[networkType] != null));
+     }
+ 
+     /**
