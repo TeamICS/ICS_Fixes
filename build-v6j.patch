@@ -1,0 +1,72 @@
+commit f4be5c43255c867f1b4bc17a9b29410c5a5e0eb6
+Author: Arne Coucheron <arco68@gmail.com>
+Date:   Tue Nov 22 00:00:15 2011 +0100
+
+    Add ARMv6J and ARMv6-VFP processor combo option
+    
+    Cherry-picked from gingerbread branch.
+
+diff --git a/core/combo/arch/arm/armv6-vfp.mk b/core/combo/arch/arm/armv6-vfp.mk
+new file mode 100644
+index 0000000..a00a2d1
+--- /dev/null
++++ b/core/combo/arch/arm/armv6-vfp.mk
+@@ -0,0 +1,30 @@
++# Configuration for Linux on ARM.
++# Generating binaries for the ARMv6-VFP architecture and higher
++#
++ARCH_ARM_HAVE_THUMB_SUPPORT     := true
++ARCH_ARM_HAVE_FAST_INTERWORKING := true
++ARCH_ARM_HAVE_64BIT_DATA        := true
++ARCH_ARM_HAVE_HALFWORD_MULTIPLY := true
++ARCH_ARM_HAVE_CLZ               := true
++ARCH_ARM_HAVE_FFS               := true
++ARCH_ARM_HAVE_VFP               := true
++
++ifeq ($(strip $(TARGET_ARCH_VARIANT_FPU)),)
++TARGET_ARCH_VARIANT_FPU         := vfp
++endif
++ifeq ($(strip $(TARGET_ARCH_VARIANT_CPU)),)
++TARGET_ARCH_VARIANT_CPU         := arm1136jf-s
++endif
++
++# Note: Hard coding the 'tune' value here is probably not ideal,
++# and a better solution should be found in the future.
++#
++arch_variant_cflags := \
++    -mcpu=$(TARGET_ARCH_VARIANT_CPU) \
++    -mfloat-abi=softfp \
++    -mfpu=$(TARGET_ARCH_VARIANT_FPU) \
++    -D__ARM_ARCH_5__ \
++    -D__ARM_ARCH_5T__ \
++    -D__ARM_ARCH_5E__ \
++    -D__ARM_ARCH_5TE__
++
+diff --git a/core/combo/arch/arm/armv6j.mk b/core/combo/arch/arm/armv6j.mk
+new file mode 100644
+index 0000000..beca884
+--- /dev/null
++++ b/core/combo/arch/arm/armv6j.mk
+@@ -0,0 +1,22 @@
++# Configuration for Linux on ARM.
++# Generating binaries for the ARMv6J architecture and higher
++#
++ARCH_ARM_HAVE_THUMB_SUPPORT     := true
++ARCH_ARM_HAVE_FAST_INTERWORKING := true
++ARCH_ARM_HAVE_64BIT_DATA        := true
++ARCH_ARM_HAVE_HALFWORD_MULTIPLY := true
++ARCH_ARM_HAVE_CLZ               := true
++ARCH_ARM_HAVE_FFS               := true
++
++# Note: Hard coding the 'tune' value here is probably not ideal,
++# and a better solution should be found in the future.
++#
++arch_variant_cflags := \
++    -march=armv6j \
++    -mtune=arm1136jf-s \
++    -pipe \
++    -fomit-frame-pointer \
++    -D__ARM_ARCH_5__ \
++    -D__ARM_ARCH_5T__ \
++    -D__ARM_ARCH_5E__ \
++    -D__ARM_ARCH_5TE__
