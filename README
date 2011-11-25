@@ -1,11 +1,31 @@
 This repository contains files and patches needed to build ICS for 
 various devices.
 
-patch-build_core_user_tags.mk
+Naming convention is 'project-modification.patch'
+
+ACTIVE
+build-core_user_tags.patch
   Patch to "grandfather" components in build/core/user_tags.mk instead 
   of having to change LOCAL_MODULE_TAGS in Android.mk
+  
+  cd build; patch -p1 < ../ICS_Fixes/build-core_user_tags.patch
 
-patch-preprocessing_Android.mk
+build-armv6j.patch
+  Patch to add armv6j/armv6j-vfp build makefiles for corresponding TARGET_ARCH_VARIANT.
+  This is based on patches submitted by arco to gerrit, but not yet merged.
+  
+  cd build; patch -p1 < ../ICS_Fixes/build-armv6j.patch
+
+dalvik-armv6j
+  Patch to add armv6j/armv6j-vfp to dalvik for corresponding TARGET_ARCH_VARIANT.
+  This is based on patches submitted by arco to gerrit, but not yet merged.
+  
+  cd dalvik; patch -p1 < ../ICS_Fixes/dalvik-armv6j.patch
+
+
+
+OLD - No longer needed on TeamICS Builds
+frameworks_base-preprocessing.patch
   Patch to rename frameworks/base/media/libeffects/preprocessing/Android.mk
   to avoid building libpreprocessing which depends on webrtc (ARMv5/6 issue)
 
