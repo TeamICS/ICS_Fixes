@@ -22,6 +22,9 @@ dalvik-armv6j
   
   cd dalvik; patch -p1 < ../ICS_Fixes/dalvik-armv6j.patch
 
+camera fixes are the folder camera. You need to copy all of the files to their 
+proper places, as laid out in the folders.
+
 
 
 OLD - No longer needed on TeamICS Builds
